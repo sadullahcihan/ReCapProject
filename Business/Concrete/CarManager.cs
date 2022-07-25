@@ -19,7 +19,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void AddCar(Car car)
+        public void Add(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length>2)
             {
@@ -29,6 +29,11 @@ namespace Business.Concrete
             {
                 Console.WriteLine("\nCar could not added! Daily price must be over zero or length of description must be bigger than 2.\n");
             }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
         }
 
         public List<Car> GetAll()
@@ -44,6 +49,16 @@ namespace Business.Concrete
         public List<Car> GetByColorId(int id)
         {
             return _carDal.GetAll(p => p.ColorId == id);
+        }
+
+        public Car GetById(int id)
+        {
+            return _carDal.Get(p => p.Id == id);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }

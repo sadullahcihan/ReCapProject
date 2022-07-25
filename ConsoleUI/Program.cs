@@ -23,7 +23,7 @@ namespace ConsoleUI
                 Id=9, BrandId = 5, ColorId = 9, 
                 ModelYear = new DateTime(1988, 01, 01), 
                 DailyPrice = 0, Description = "Selling my car." };
-            carManager.AddCar(newCar);
+            carManager.Add(newCar);
             */
             Console.WriteLine("\nBrand id 3:");
             foreach (var car in carManager.GetByBrandId(3))
@@ -35,6 +35,26 @@ namespace ConsoleUI
             {
                 Console.WriteLine("{0}\t {1} \t {2}", car.Id, car.ModelYear, car.Description);
             }
+            //CRUD TEST
+            /*
+            Car newCar = new Car()
+            {
+                Id = 9,
+                BrandId = 5,
+                ColorId = 1,
+                ModelYear = new DateTime(1999, 01, 01),
+                DailyPrice = 166000,
+                Description = "Milenium Car!"
+            };
+            carManager.Add(newCar);
+            //carManager.Update(newCar);
+            //carManager.Delete(newCar);
+            foreach (var car in carManager.GetAll())
+            {
+                Console.WriteLine("{0}\t {1} \t {2}", car.Id, car.ModelYear, car.Description);
+            }
+            */
+
         }
     }
 }
