@@ -23,17 +23,70 @@ namespace ConsoleUI
 
             //CrudTest(carManager);
 
-            GetCarDetailsTest(carManager);
+
+            //GetCarDetailsTest(carManager);
+
             //Brand Tests
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-
-            DisplayBrandsTest(brandManager);
+            //DisplayBrandsTest(brandManager);
 
             //CrudTest TEST Brand
             //Brand newBrand = new Brand { BrandId = 11, BrandName = "Corolla New" };
             //brandManager.Delete(newBrand);
             //foreach (var b in brandManager.GetAll().Message)
             //Console.WriteLine(brandManager.GetAll().Message);
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            //AddCustomerTest(customerManager);
+            //UpdateCustomerTest(customerManager);
+            UserManager userManager = new UserManager(new EfUserDal());
+            //CrudTestUser(userManager);
+            //UserDetailsTest(userManager);
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //rentalManager.Add(new Rental() { Id = 1 , CarId = 1, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(1)});
+        }
+
+        private static void UserDetailsTest(UserManager userManager)
+        {
+            foreach (var user in userManager.GetUserDetails().Data)
+            {
+                Console.WriteLine("{0}{1}{2}{3}", user.CompanyName, user.FirstName, user.LastName, user.Email);
+            }
+        }
+
+        private static void CrudTestUser(UserManager userManager)
+        {
+            userManager.Add(new User()
+            {
+                Id = 5,
+                FirstName = "Dimitri",
+                LastName = "Reyes",
+                Email = "dimitri_reyes@gmail.com",
+                Password = "dimitriBG"
+            });
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}\t{3}", user.Id, user.FirstName, user.LastName, user.Email);
+            }
+        }
+
+        private static void UpdateCustomerTest(CustomerManager customerManager)
+        {
+            customerManager.Update(new Customer() { Id = 4, CompanyName = "The Queen Rent a Car" });
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} {1}", customer.Id, customer.CompanyName);
+            }
+        }
+
+        private static void AddCustomerTest(CustomerManager customerManager)
+        {
+            customerManager.Add(new Customer() { Id = 5, CompanyName = "Star Rent a Car" });
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} {1}", customer.Id, customer.CompanyName);
+            }
         }
 
         private static void DisplayBrandsTest(BrandManager brandManager)

@@ -22,5 +22,10 @@ namespace Business.Constants
         public static string BrandNotAdded = "Brand could not added!";
         public static string BrandDeleted = "Brand has been deleted.";
         public static string BrandListed = "Brands have been listed";
+
+        public static string UserListed = "Users have been listed";
+        public static string UserAdded = "User has been added.";
+        public static string UserInvalid = "User is invalid! There are some empty properties.";
+        public static string UserUpdated = "User has been updated.";
     }
 }
