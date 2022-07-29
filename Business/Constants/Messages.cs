@@ -27,5 +27,9 @@ namespace Business.Constants
         public static string UserAdded = "User has been added.";
         public static string UserInvalid = "User is invalid! There are some empty properties.";
         public static string UserUpdated = "User has been updated.";
+
+        public static string RentalCarDidNotReturn = "The car did not return yet. Select another car.";
+        public static string Rented = "The car has been rented.";
+        public static string RentalCarReturned = "The car returned successfully.";
     }
 }

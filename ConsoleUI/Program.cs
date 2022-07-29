@@ -46,19 +46,39 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             //RentalCrudTest(rentalManager);
             RentalDisplay(rentalManager);
+            //RentalUpdateTest(rentalManager,7);
         }
-
-        private static void RentalDisplay(RentalManager rentalManager)
+        private static void RentalUpdateTest(RentalManager rentalManager,int id)
         {
+            var oldData = rentalManager.GetById(id);
+            Console.WriteLine(rentalManager.Update(new Rental()
+            {
+                Id = oldData.Data.Id,
+                CarId = oldData.Data.CarId,
+                CustomerId = oldData.Data.CarId,
+                RentDate = oldData.Data.RentDate,
+                ReturnDate = DateTime.Now
+            }).Message + "\n");
             foreach (var rental in rentalManager.GetAll().Data)
             {
                 Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", rental.Id, rental.CarId, rental.CustomerId, rental.RentDate, rental.ReturnDate);
             }
         }
+        private static void RentalDisplay(RentalManager rentalManager)
+        {
+            Console.WriteLine("{0}\t{1}\t{2}\t{3}\t\t{4}", "Id", "CarId","CustomerId", "RentDate", "ReturnDate");
+            foreach (var rental in rentalManager.GetAll().Data)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}\t\t{3}\t{4}", rental.Id, rental.CarId, rental.CustomerId, rental.RentDate, rental.ReturnDate);
+            }
+        }
 
         private static void RentalCrudTest(RentalManager rentalManager)
         {
-            rentalManager.Add(new Rental() { Id = 4, CarId = 5, CustomerId = 3, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(2) });
+            Console.WriteLine(rentalManager.Add(new Rental() { 
+                Id = 10, CarId = 3, CustomerId = 4, 
+                RentDate = DateTime.Now, ReturnDate = DateTime.MaxValue
+            }).Message + "\n");
             foreach (var rental in rentalManager.GetAll().Data)
             {
                 Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", rental.Id, rental.CarId, rental.CustomerId, rental.RentDate, rental.ReturnDate);
